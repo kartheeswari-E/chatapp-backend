@@ -8,17 +8,19 @@ const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin: 'https://symphonious-kulfi-6dd775.netlify.app',
+    credentials: true
+}));
 const server = http.createServer(app);
 
 const io = new Server(server,{
     cors: {
-        origin:'https://symphonious-kulfi-6dd775.netlify.app/api',
-        credentials:true, 
+        origin:'https://symphonious-kulfi-6dd775.netlify.app',
         methods: ['GET', 'POST']
     }
 })
-
+//https://symphonious-kulfi-6dd775.netlify.app/api
 //Importing routes
 const authRoutes = require('./routes/auth.routes');
 
