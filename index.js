@@ -1,14 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const db = require('./db/connection');
-const cors = require('cors');
-app.use(cors());
+
 const http = require('http');
 const { Server } = require('socket.io');
 
 const cookieParser = require('cookie-parser');
 const app = express();
-
+const cors = require('cors');
+app.use(cors());
 const server = http.createServer(app);
 
 const io = new Server(server,{
