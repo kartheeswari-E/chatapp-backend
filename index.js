@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const db = require('./db/connection');
 const cors = require('cors');
+app.use(cors());
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -13,6 +14,7 @@ const server = http.createServer(app);
 const io = new Server(server,{
     cors: {
         origin:'https://symphonious-kulfi-6dd775.netlify.app/api',
+        credentials:true, 
         methods: ['GET', 'POST']
     }
 })
@@ -28,7 +30,7 @@ db();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+
 
 
 app.use('/api',authRoutes);
