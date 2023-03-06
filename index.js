@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const db = require('./db/connection');
-
+db();
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -20,12 +20,12 @@ const io = new Server(server,{
 })
 
 //Importing routes
-const authRoutes = require('./routes/auth.routes'); //custom middleware
-// const chatRoutes = require('./routes/chat.routes');
+const authRoutes = require('./routes/auth.routes');
+
 const userRoutes = require('./routes/user.routes');
 
 //Connecting DB.
-db();
+
 
 app.use(express.json());
 app.use(cookieParser());
