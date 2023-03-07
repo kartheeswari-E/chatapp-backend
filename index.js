@@ -8,10 +8,7 @@ const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
-app.use(cors({
-    origin: 'https://dulcet-khapse-0c302d.netlify.app',
-    credentials: true
-}));
+app.use(cors());
 const server = http.createServer(app);
 
 const io = new Server(server,{
