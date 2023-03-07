@@ -8,7 +8,10 @@ const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin: 'https://dulcet-khapse-0c302d.netlify.app',
+    credentials: true
+}));
 const server = http.createServer(app);
 
 const io = new Server(server,{
@@ -60,7 +63,7 @@ const PORT = process.env.PORT || 5000;
 app.get("/", (request, response) => {
     response.send("hai hellow welcome");
   });
-server.listen(PORT, () => {
+server.listen("https://dulcet-khapse-0c302d.netlify.app", () => {
     console.log(`App is running on PORT ${PORT}`);
 })
 
