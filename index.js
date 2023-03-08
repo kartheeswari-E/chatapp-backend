@@ -102,6 +102,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen("https://chat-app-716r.onrender.com", () => {
+server.listen(process.env.PORT ||4000, () => {
   console.log("SERVER RUNNING");
 });
