@@ -1,7 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const db = require('./db/connection');
-db();
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -20,26 +18,12 @@ const io = new Server(server,{
         methods: ['GET', 'POST']
     }
 })
-//https://symphonious-kulfi-6dd775.netlify.app/api
-//Importing routes
-const authRoutes = require('./routes/auth.routes');
 
-const userRoutes = require('./routes/user.routes');
-
-//Connecting DB.
 
 
 app.use(express.json());
 app.use(cookieParser());
 
-
-
-
-app.use('/api',authRoutes);
-app.use('/api', userRoutes);
-
-// on -> receiving side.
-// emit -> sending side.
 
 io.on('connection', (socket) => {
 
@@ -67,41 +51,3 @@ server.listen("PORT", () => {
     console.log(`App is running on PORT ${PORT}`);
 })
 
-// const express = require("express");
-// const app = express();
-// const http = require("http");
-// const cors = require("cors");
-// const db = require('./db/connection');
-// db();
-// const { Server } = require("socket.io");
-// app.use(cors());
-
-// const server = http.createServer(app);
-
-// const io = new Server(server, {
-//   cors: {
-//     origin: "*",
-//     methods: ["GET", "POST"],
-//   },
-// });
-
-// io.on("connection", (socket) => {
-//   console.log(`User Connected: ${socket.id}`);
-
-//   socket.on("join_room", (data) => {
-//     socket.join(data);
-//     console.log(`User with ID: ${socket.id} joined room: ${data}`);
-//   });
-
-//   socket.on("send_message", (data) => {
-//     socket.to(data.room).emit("receive_message", data);
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("User Disconnected", socket.id);
-//   });
-// });
-
-// server.listen(process.env.PORT ||4000, () => {
-//   console.log("SERVER RUNNING");
-// });
