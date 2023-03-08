@@ -80,7 +80,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://dulcet-khapse-0c302d.netlify.app",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
